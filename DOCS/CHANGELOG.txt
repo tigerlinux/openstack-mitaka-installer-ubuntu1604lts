@@ -1,0 +1,12 @@
+1.0.0.ub1604lts - May 17, 2016
+
+- First release for Ubuntu 16.04 lts Distro.
+- Adapted from our ubuntu 14.04 based installer,
+  version 1.2.1.ub1404lts.
+- Updated all modules in order to adapt to new
+  services managed by systemctl.
+- Corrected missing config item in glance registry.
+- Added temporary workaround for dbsync failures
+  in trove due bug with MariaDB 10.0 (the bug is
+  in trove, not in MariaDB).
+

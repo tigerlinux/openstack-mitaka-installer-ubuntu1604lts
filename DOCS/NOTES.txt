@@ -1,0 +1,84 @@
+IMPORTANT NOTES !!
+
+Be sure to have good knowledge of the following topics:
+
+- Administration of Linux.
+- Virtualization on Linux with kvm / qemu / libvirt.
+- LinuxBridge and OpenVSwitch.
+- Linux namespaces.
+- Networks in general.
+- OpenStack.
+- NFS, GlusterFS.
+- "Correct" Install of Ubuntu 16.04 LTS O/S.
+
+This installer is ONLY for Unbuntu 16.04 LTS 64-bit (x86_64 / amd64). Do not
+attempt to use it in another environment.
+
+
+1.- Base repositories and installing Ubuntu Server 16.04 LTS:
+
+Make sure you have the Ubuntu 16.04 LTS repositories as they come installed by
+default. Install the server with the normal options and include as extra
+package: "OpenSSH Server".
+
+If you are going to use a "Cinder Volume", remember to reserve the disk space for it.
+
+Make sure you have updated the server:
+
+apt-get update
+apt-get -y upgrade
+
+Mitaka repositories are already included on Ubuntu 16.04 LTS so you don't need to
+include extra repos here.
+
+
+You may need to reboot the server after the last command (specially if the
+updates included a new kernel).
+
+
+2.- System Control (/etc/sysctl.conf).
+
+WARNING: This is VERY important!. Make sure you have the following items
+configured in /etc/sysctl.conf:
+
+net.ipv4.ip_forward=1
+net.ipv4.conf.all.rp_filter=0
+net.ipv4.conf.default.rp_filter=0
+
+If you do not have configured this, please do it now and then reboot the
+machine.
+
+
+3. OpenVSWITCH:
+
+First install openvswitch. Run the commands below (after placing the
+repositories listed above):
+
+apt-get -y install openvswitch-switch python-openvswitch
+/etc/init.d/openvswitch-switch restart
+
+Then, create the bridges:
+
+First step: br-int (OpenStack integration switch/bridge):
+
+ovs-vsctl add-br br-int
+
+Next step: br-ethX (OpenStack networks switch/bridge). Example for "eth2"
+interface:
+
+ovs-vsctl add-br br-eth2
+ovs-vsctl add-port br-eth2 eth2
+
+
+NOTE: Always try to use an interface that is FREE and can be "dedicated" to
+OpenStack. For other configurations, see the information that is available
+online. It is not necessary 
+
+to place the interfaces associated with the switches in
+/etc/network/interfaces, unless you have "shared" and not dedicated to
+OpenStack, or unless you are using special "vlan-based" configurations.
+
+For more information, please refer to OpenStack main documentation site:
+
+http://docs.openstack.org
+

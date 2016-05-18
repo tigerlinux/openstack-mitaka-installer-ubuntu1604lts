@@ -1,0 +1,13 @@
+####################################
+#
+SHELL=/bin/bash
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+#
+# Unattended installer for OpenStack.
+# Reynaldo R. Martinez P.
+# E-Mail: TigerLinux@Gmail.com
+#
+# Keystone Cleaning Crontab
+#
+
+02 */1 * * * root /usr/local/bin/openstack-keystone-tokenflush.sh > /var/log/keystone-tokens-flush.log
