@@ -1,0 +1,5 @@
+ALERT !!
+
+Installing Manila and/or Designate on Ubuntu 16.04lts breaks Horizon and make imposible to log using it. Please DO NOT install any of those components on production environments running Ubuntu 16.04lts if you intend to use the OpenStack WEB Dashboard.
+
+You have been warned !!

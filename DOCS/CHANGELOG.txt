@@ -1,3 +1,11 @@
+1.0.1.ub1604lts - May 18, 2016
+
+- Added notes regarding Designate and Manila
+  breaking Horizon. If you install any or both
+  of those components, Horizon will be unusable.
+- Added some minor changes to horizon install
+  module.
+
 1.0.0.ub1604lts - May 17, 2016
 
 - First release for Ubuntu 16.04 lts Distro.

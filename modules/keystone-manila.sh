@@ -67,12 +67,12 @@ openstack role add --project $keystoneservicestenant --user $manilauser $keyston
 echo "Manila Services V1 and V2:"
 openstack service create \
 	--name $manilasvcev1 \
-	--description "OpenStack Shared File Systems V1" \
+	--description "OpenStack Shared File Systems" \
 	share
 
 openstack service create \
 	--name $manilasvcev2 \
-	--description "OpenStack Shared File Systems V2" \
+	--description "OpenStack Shared File Systems" \
 	sharev2
 
 echo "Manila Endpoints:"

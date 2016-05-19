@@ -218,6 +218,7 @@ then
 	crudini --set /etc/manila/manila.conf DEFAULT enabled_share_protocols "NFS,CIFS"
 	crudini --set /etc/manila/manila.conf lvm share_backend_name LVM
 	crudini --set /etc/manila/manila.conf lvm share_driver manila.share.drivers.lvm.LVMShareDriver
+	crudini --set /etc/manila/manila.conf lvm iscsi_helper tgtadm
 	crudini --set /etc/manila/manila.conf lvm driver_handles_share_servers False
 	crudini --set /etc/manila/manila.conf lvm lvm_share_volume_group $manilavg
 	crudini --set /etc/manila/manila.conf lvm lvm_share_export_ip $manilahost

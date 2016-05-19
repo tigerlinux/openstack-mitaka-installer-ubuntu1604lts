@@ -5,8 +5,8 @@
 # E-Mail: TigerLinux@Gmail.com
 #
 # Main Installer Script
-# Version: 1.0.0.ub1604lts "Lynx Pardinus"
-# May 17, 2016
+# Version: 1.0.1.ub1604lts "Lynx Pardinus"
+# May 18, 2016
 #
 
 PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin

@@ -5,8 +5,8 @@
 # E-Mail: TigerLinux@Gmail.com
 #
 # Main Configuration
-# Version: 1.0.0.ub1604lts "Lynx Pardinus"
-# May 17, 2016
+# Version: 1.0.1.ub1604lts "Lynx Pardinus"
+# May 18, 2016
 #
 
 #
@@ -720,7 +720,9 @@ extrasaharahosts=""
 
 
 #
-# OPENSTACK MANILA
+# OPENSTACK MANILA - ALERT ALERT ALERT: Installing Manila or Designate on Ubuntu 16.04 WILL 
+# BREAK Horizon !!!. DO NOT install it on productions environment !!!
+# There is an apparent bug that makes unusable Horizon when Manila or Designate is installed
 #
 # Same as with heat,trove and sahara. By default we don't install them. If you want to include
 # manila in your cloud, set this yo YES. And again, install this in the controller or in a 
@@ -730,7 +732,7 @@ manilainstall="no"
 manilahost="192.168.50.14"
 # Again, change the password and e-mail
 manilauser="manila"
-manilasvcev1="manilav1"
+manilasvcev1="manila"
 manilasvcev2="manilav2"
 manilapass="P@ssw0rd"
 manilaemail="manila@localhost"
@@ -752,6 +754,9 @@ extramanilahosts=""
 
 #
 # OPENSTACK DESIGNATE - EXPERIMENTAL
+# ALERT ALERT ALERT: Installing Manila or Designate on Ubuntu 16.04 WILL BREAK Horizon !!!.
+# DO NOT install it on productions environment !!!
+# There is an apparent bug that makes unusable Horizon when Manila or Designate is installed
 #
 # We are including EXPERIMENTAL support for Designate. Please, read all the documentation
 # about OpenStack Designate in order to fully understand the way DNSaaS is implemented with

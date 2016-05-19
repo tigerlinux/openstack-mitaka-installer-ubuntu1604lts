@@ -728,9 +728,9 @@ REST_API_REQUIRED_SETTINGS = ['OPENSTACK_HYPERVISOR_FEATURES',
 ###############################################################################
 
 # Enable the Ubuntu theme if it is present.
-# try:
+#try:
 #   from ubuntu_theme import *
-# except ImportError:
+#except ImportError:
 #   pass
 
 # Default Ubuntu apache configuration uses /horizon as the application root.
@@ -739,7 +739,7 @@ WEBROOT='/horizon/'
 # By default, validation of the HTTP Host header is disabled.  Production
 # installations should have this set accordingly.  For more information
 # see https://docs.djangoproject.com/en/dev/ref/settings/.
-ALLOWED_HOSTS = '*'
+# ALLOWED_HOSTS = '*'
 
 # Compress all assets offline as part of packaging installation
 COMPRESS_OFFLINE = True

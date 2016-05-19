@@ -68,7 +68,7 @@ export DEBIAN_FRONTEND=noninteractive
 DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 apache2-bin libapache2-mod-wsgi
 
 a2dismod ssl
-a2dismod python
+a2dismod python > /dev/null 2>&1
 a2enmod wsgi
 # service apache2 stop >/dev/null 2>&1
 # service apache2 start
@@ -105,7 +105,9 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install memcached \
 	python-cherrypy3 \
 	python-beautifulsoup
 
-a2dismod python
+DEBIAN_FRONTEND=noninteractive aptitude -y purge libapache2-mod-python
+
+a2dismod python > /dev/null 2>&1
 a2enmod wsgi
 
 # /etc/init.d/memcached restart
@@ -116,9 +118,9 @@ systemctl restart apache2
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install openstack-dashboard
 
-DEBIAN_FRONTEND=noninteractive aptitude -y purge openstack-dashboard-ubuntu-theme
+# DEBIAN_FRONTEND=noninteractive aptitude -y purge openstack-dashboard-ubuntu-theme
 
-a2dismod python
+a2dismod python > /dev/null 2>&1
 a2enmod wsgi
 
 # /etc/init.d/memcached restart
@@ -268,24 +270,28 @@ echo "Done"
 echo ""
 echo "Starting Services"
 
-a2dismod python
+a2dismod python > /dev/null 2>&1
 a2enmod wsgi
+
+#
+# Purging instead or removing seems to break horizon in 16.04lts... weird !!
+aptitude -y remove openstack-dashboard-ubuntu-theme
 
 # Commented - those packager are breaking our installer
 # Meanwhile, we'll use git sources
-# if [ $troveinstall == "yes" ]
-# then
-# 	mkdir -p /var/lib/openstack-dashboard/secret-key/
-#	touch /var/lib/openstack-dashboard/secret-key/.secret_key_store
-#	DEBIAN_FRONTEND=noninteractive aptitude -y install python-trove-dashboard
-#fi
+if [ $troveinstall == "yes" ]
+then
+ 	mkdir -p /var/lib/openstack-dashboard/secret-key/
+	touch /var/lib/openstack-dashboard/secret-key/.secret_key_store
+	DEBIAN_FRONTEND=noninteractive aptitude -y install python-trove-dashboard
+fi
 
-#if [ $saharainstall == "yes" ]
-#then
-#	mkdir -p /var/lib/openstack-dashboard/secret-key/
-#	touch /var/lib/openstack-dashboard/secret-key/.secret_key_store
-#	DEBIAN_FRONTEND=noninteractive aptitude -y install python-sahara-dashboard
-#fi
+if [ $saharainstall == "yes" ]
+then
+	mkdir -p /var/lib/openstack-dashboard/secret-key/
+	touch /var/lib/openstack-dashboard/secret-key/.secret_key_store
+	DEBIAN_FRONTEND=noninteractive aptitude -y install python-sahara-dashboard
+fi
 
 #if [ $manilainstall == "yes" ]
 #then
