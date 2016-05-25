@@ -1,3 +1,12 @@
+1.0.2.ub1604lts - May 25, 2016
+
+- Added new config option "swiftmetrics" in
+  order to enable or disable ceilometer metrics
+  for swift.
+- Corrected a little typo on ceilometer install
+  module.
+- Updated main documentation.
+
 1.0.1.ub1604lts - May 18, 2016
 
 - Added notes regarding Designate and Manila

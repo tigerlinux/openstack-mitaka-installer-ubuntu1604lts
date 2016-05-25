@@ -123,6 +123,9 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install swift swift-account swift-con
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install xfsprogs rsync
 
+DEBIAN_FRONTEND=noninteractive aptitude -y install libjerasure-dev libjerasure2
+
+DEBIAN_FRONTEND=noninteractive aptitude -y install libffi-dev liberasurecode-dev
 
 #
 # We silently stops all swift services
