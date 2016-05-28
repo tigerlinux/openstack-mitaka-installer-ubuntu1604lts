@@ -293,6 +293,7 @@ rm -f /usr/local/bin/openstack-log-cleaner.sh
 rm -f /usr/local/bin/openstack-keystone-tokenflush.sh
 rm -f /usr/local/bin/openstack-vm-boot-start.sh
 rm -f /usr/local/bin/compute-and-instances-full-report.sh
+rm -f /usr/local/bin/instance-cpu-metrics-report.sh
 rm -f /etc/cron.d/keystone-flush-crontab
 rm -rf /var/www/cgi-bin/keystone
 rm -f /etc/apache2/sites-enabled/wsgi-keystone.conf
