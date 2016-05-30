@@ -1,3 +1,8 @@
+1.0.4.ub1604lts - May 30, 2016
+
+- Bugfix: Added missing aodh config items in
+  main config file.
+
 1.0.3.ub1604lts - May 28, 2016
 
 - Minor modifications in neutron install module.
