@@ -172,6 +172,14 @@ dbpopulate="yes"
 
 With these three options set to "yes", the database software is installed, will be configured and databases will be created using all the information contained in the configuration file.
 
+Also, set a realistic value for "dbmaxcons" setting (maximun database connections). If your controller have a lot of cores, most controller components will spawn a lot of childrens, each with it's own database connection. See the notes in the config file about recommended settings for this value.
+
+```bash
+dbmaxcons=1000
+```
+
+Our default value is 1000, but this can fall short if your controller have a lot of cores. If you want to play safe, set a very high value here and later (after install) lower your database "max_connections" settings in order to set to more appropiate value.
+
 > **WARNING**: If you choose these options, you must ensure that there is
 > NO database software previously installed or the process will fail.
 
@@ -249,7 +257,7 @@ Through a configurable option in the installer configuration file (**consoleflav
 
 ### Cloudformation and AutoScaling
 
-If you want to use Cloudformatio with AutoScaling, you MUST install **"heat"**, **"ceilometer"** and **"aodh"** (**ceilometer alarms**):
+If you want to use Cloudformation with AutoScaling, you MUST install **"heat"**, **"ceilometer"** and **"aodh"** (**ceilometer alarms**):
 
 ```bash
 heatinstall="yes"
