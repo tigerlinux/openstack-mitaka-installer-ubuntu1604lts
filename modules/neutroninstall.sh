@@ -118,8 +118,8 @@ else
 	if [ $vpnaasinstall == "yes" ]
 	then
 		DEBIAN_FRONTEND=noninteractive aptitude -y install neutron-vpn-agent \
-			openswan \
-			openswan-modules-dkms \
+			strongswan \
+			strongswan-ikev2 \
 			python-neutron-vpnaas
 	fi
 
@@ -416,9 +416,11 @@ then
 	crudini --set /etc/neutron/vpn_agent.ini DEFAULT ovs_use_veth True
 	crudini --set /etc/neutron/vpn_agent.ini DEFAULT use_namespaces True
 	crudini --set /etc/neutron/vpn_agent.ini DEFAULT external_network_bridge ""
-	crudini --set /etc/neutron/vpn_agent.ini vpnagent vpn_device_driver "neutron_vpnaas.services.vpn.device_drivers.ipsec.OpenSwanDriver"
+	#crudini --set /etc/neutron/vpn_agent.ini vpnagent vpn_device_driver "neutron_vpnaas.services.vpn.device_drivers.ipsec.OpenSwanDriver"
+	crudini --set /etc/neutron/vpn_agent.ini vpnagent vpn_device_driver "neutron_vpnaas.services.vpn.device_drivers.strongswan_ipsec.StrongSwanDriver"
 	crudini --set /etc/neutron/vpn_agent.ini ipsec ipsec_status_check_interval 60
-	crudini --set /etc/neutron/neutron_vpnaas.conf service_providers service_provider "VPN:openswan:neutron.services.vpn.service_drivers.ipsec.IPsecVPNDriver:default"
+	#crudini --set /etc/neutron/neutron_vpnaas.conf service_providers service_provider "VPN:openswan:neutron.services.vpn.service_drivers.ipsec.IPsecVPNDriver:default"
+	crudini --set /etc/neutron/neutron_vpnaas.conf service_providers service_provider "VPN:strongswan:neutron_vpnaas.services.vpn.service_drivers.ipsec.IPsecVPNDriver:default"
 fi
  
 if [ $neutronmetering == "yes" ]
@@ -746,6 +748,10 @@ then
 	# Just a little failsafe in order to ensure proper lbaas v2 installation:
 	su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
 		--config-file /etc/neutron/plugin.ini --service lbaas upgrade head" neutron
+	
+	# Same for vpnaas
+	su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+		--config-file /etc/neutron/plugin.ini --service vpnaas upgrade head" neutron
 fi
 
 sync
@@ -835,6 +841,8 @@ else
         then
                 systemctl start neutron-vpn-agent
 		systemctl enable neutron-vpn-agent
+		systemctl disable neutron-l3-agent
+		systemctl stop neutron-l3-agent
         fi
 
 	if [ $neutronmetering == "yes" ]

@@ -82,7 +82,6 @@ then
 			"
                         neutron-server
                         neutron-openvswitch-agent
-                        neutron-l3-agent
                         neutron-lbaasv2-agent
                         neutron-metadata-agent
                         neutron-dhcp-agent

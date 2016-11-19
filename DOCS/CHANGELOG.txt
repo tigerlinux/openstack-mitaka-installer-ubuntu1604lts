@@ -1,3 +1,7 @@
+1.0.8.ub1604lts - November 19, 2016
+
+- Corrected entries regarding VPNaaS Neutron agent.
+
 1.0.7.ub1604lts - October 08, 2016
 
 - Changes on trove install module:
